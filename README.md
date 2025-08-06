@@ -71,32 +71,6 @@ This system is developed using **Java 21**, **Java Servlets**, **MySQL 8.0.40**,
 
 ---
 
-## 📁 Project Structure
-
-```
-Group##_Final_Project/
-│
-├── src/
-│   ├── presentation/
-│   ├── business/             # Java Servlets, Controllers, Services
-│   └── data/                 # DAO classes, MySQL interactions
-│
-├── test/                     # JUnit test cases
-├── diagrams/                 # UML Class, Sequence, ER, Component diagrams
-├── database/
-│   ├── create_schema.sql
-│   ├── insert_sample_data.sql
-│   └── db.properties
-│
-├── design/
-│   └── High-Level_Design.pdf
-├── peer-review/
-│   └── Peer_Review_Template.pdf
-└── README.md
-```
-
----
-
 ## 🧪 Testing
 
 - Unit Testing with **JUnit**
