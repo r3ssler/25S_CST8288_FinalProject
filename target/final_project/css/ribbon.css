@@ -1,0 +1,59 @@
+.ribbon {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo or system name */
+.ribbon .title {
+    font-size: 1.2rem;
+}
+
+/* Right-side content: user info, logout, etc. */
+.ribbon .right-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Optional logout link styling */
+.ribbon a.logout-link {
+    color: white;
+    text-decoration: none;
+    background-color: #e74c3c;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.ribbon a.logout-link:hover {
+    background-color: #c0392b;
+}
+
+/* Responsive fallback */
+@media screen and (max-width: 600px) {
+    .ribbon {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .ribbon .right-controls {
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
+    }
+}

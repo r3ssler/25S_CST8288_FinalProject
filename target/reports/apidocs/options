@@ -1,0 +1,22 @@
+-classpath
+'C:/Users/Ressler/.m2/repository/com/mysql/mysql-connector-j/9.3.0/mysql-connector-j-9.3.0.jar;C:/Users/Ressler/.m2/repository/com/google/protobuf/protobuf-java/4.29.0/protobuf-java-4.29.0.jar;C:/Users/Ressler/.m2/repository/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar;C:/Users/Ressler/.m2/repository/javax/servlet/jstl/1.2/jstl-1.2.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'C:/Users/Ressler/Desktop/OOP JAVA/25S_CST8288_FinalProject/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Ressler/Desktop/OOP JAVA/25S_CST8288_FinalProject/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'25S_CST8288_FinalProject 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'25S_CST8288_FinalProject 1.0-SNAPSHOT API'

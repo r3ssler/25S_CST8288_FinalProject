@@ -1,0 +1,17 @@
+com.algonquin.www.common.builder
+com.algonquin.www.common.command.impl
+com.algonquin.www.common.command
+com.algonquin.www.common.constants
+com.algonquin.www.common.db
+com.algonquin.www.common.factory
+com.algonquin.www.common.filter
+com.algonquin.www.common.observer.impl
+com.algonquin.www.common.observer
+com.algonquin.www.common.strategy
+com.algonquin.www.common.strategy.impl
+com.algonquin.www.controller
+com.algonquin.www.dao
+com.algonquin.www.dao.impl
+com.algonquin.www.domain
+com.algonquin.www.model
+com.algonquin.www.service

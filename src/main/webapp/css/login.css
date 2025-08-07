@@ -1,0 +1,91 @@
+/* Center the login box */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #e3f2fd, #ffffff);
+    padding: 20px;
+}
+
+/* The box that holds the login form */
+.login-box {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Login heading */
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 26px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Login form structure */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Label styling */
+label {
+    font-weight: 600;
+    color: #34495e;
+    margin-bottom: 4px;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="password"] {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Focus effect on inputs */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
+    outline: none;
+}
+
+/* Buttons */
+button {
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Primary action button (Login) */
+button[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Secondary action button (Sign up) */
+button[type="button"] {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+}
+
+button[type="button"]:hover {
+    background-color: #d5dbdb;
+}
