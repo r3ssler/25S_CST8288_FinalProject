@@ -12,14 +12,57 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Servlet responsible for handling usage-related operations including
+ * uploading usage data, generating reports, and recording expenses.
+ * <p>
+ * Supported request paths:
+ * <ul>
+ *   <li>GET /upload - Displays the usage data upload page.</li>
+ *   <li>GET /report - Generates and displays usage and expense reports.</li>
+ *   <li>POST /expense - Processes an expense report submission.</li>
+ * </ul>
+ * </p>
+ * 
+ * <p>
+ * Most requests expect parameters such as "vehicleNumber", "eventType", "expense",
+ * "usageAmount", "lastMileAmount", and "currentMileAmount" as applicable.
+ * </p>
+ * 
+ * <pre>
+ * Example usage:
+ * GET /usage/upload
+ * GET /usage/report?vehicleNumber=123
+ * POST /usage/expense with parameters vehicleNumber=123, eventType=bus, expense=100.0, usageAmount=50.0, lastMileAmount=1000.0, currentMileAmount=1050.0
+ * </pre>
+ * 
+ * @author
+ * @version 1.0
+ * @since 2025-08-07
+ */
+
 public class UsageManagementServlet extends HttpServlet {
 
     private UsageService usageService;
+    
+    /**
+     * Initializes the servlet and the usage service.
+     */
+    
     
     @Override
     public void init(){
         usageService = new UsageService();
     }
+    
+     /**
+     * Handles HTTP GET requests for showing upload page and generating reports.
+     *
+     * @param req  the HTTP request
+     * @param resp the HTTP response
+     * @throws IOException if an I/O error occurs during request dispatching
+     */
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -36,6 +79,14 @@ public class UsageManagementServlet extends HttpServlet {
         }
     }
     
+    /**
+     * Handles HTTP POST requests for recording usage expenses.
+     *
+     * @param req  the HTTP request
+     * @param resp the HTTP response
+     * @throws IOException if an I/O error occurs during request dispatching
+     */
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String action = req.getPathInfo();
@@ -48,6 +99,14 @@ public class UsageManagementServlet extends HttpServlet {
         }
     }
     
+    /**
+     * Forwards to the usage data upload JSP page.
+     *
+     * @param req  the HTTP request
+     * @param resp the HTTP response
+     * @throws IOException if forwarding fails
+     */
+    
     private void showUpload(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
             req.getRequestDispatcher("/jsp/usage-upload.jsp").forward(req, resp);
@@ -56,6 +115,14 @@ public class UsageManagementServlet extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
+    
+     /**
+     * Handles usage report generation for a specific vehicle.
+     *
+     * @param req  the HTTP request
+     * @param resp the HTTP response
+     * @throws IOException if forwarding fails
+     */
 
 
     private void report(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -76,6 +143,14 @@ public class UsageManagementServlet extends HttpServlet {
         }
 
     }
+    
+     /**
+     * Processes an expense report submission.
+     *
+     * @param req  the HTTP request
+     * @param resp the HTTP response
+     * @throws IOException if forwarding fails
+     */
     
     private void expense(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         ExpenseReportRequest request = new ExpenseReportRequest();

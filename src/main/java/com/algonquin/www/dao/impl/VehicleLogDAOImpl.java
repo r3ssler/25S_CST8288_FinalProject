@@ -9,8 +9,25 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of {@link VehicleLogDAO} for managing VehicleLog entities in the database.
+ * <p>
+ * Provides methods to search for vehicle logs by vehicle number and to add new vehicle logs.
+ * </p>
+ */
+
 
 public class VehicleLogDAOImpl extends AbstractGenericDAO implements VehicleLogDAO {
+    
+     /**
+     * Searches for vehicle logs associated with a specific vehicle number.
+     * <p>
+     * Retrieves all logs for the given vehicle number ordered by log time in descending order.
+     * </p>
+     *
+     * @param vehicleNumber the vehicle number to search logs for
+     * @return a list of {@link VehicleLogDTO} objects representing the logs; empty list if none found
+     */
     
     @Override
     public List<VehicleLogDTO> search(String vehicleNumber) {
@@ -40,6 +57,13 @@ public class VehicleLogDAOImpl extends AbstractGenericDAO implements VehicleLogD
 
         return logs;
     }
+    
+    /**
+     * Adds a new vehicle log entry to the database.
+     *
+     * @param log the {@link VehicleLogDTO} containing log details to insert
+     * @return {@code true} if the log was successfully inserted; {@code false} otherwise
+     */
 
     @Override
     public boolean addLog(VehicleLogDTO log) {

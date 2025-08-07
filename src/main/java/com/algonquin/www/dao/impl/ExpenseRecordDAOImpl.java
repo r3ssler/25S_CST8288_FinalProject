@@ -12,7 +12,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of {@link ExpenseRecordDAO} interface for managing
+ * expense records stored in the database.
+ * <p>
+ * Provides methods to search, add, and retrieve expense records.
+ * Uses {@link DataSource} to obtain database connections.
+ * </p>
+ *
+ * @author
+ * @version 1.0
+ * @since 2025-08-07
+ */
+
 public class ExpenseRecordDAOImpl implements ExpenseRecordDAO {
+    /**
+     * Searches expense records by vehicle number if provided,
+     * otherwise returns all expense records.
+     *
+     * @param request the search criteria encapsulated in {@link ExpenseRecordSearchRequest}
+     * @return list of matching {@link ExpenseRecordDTO} objects
+     */
     
     @Override
     public List<ExpenseRecordDTO> expenseRecordSearch(ExpenseRecordSearchRequest request) {
@@ -57,10 +77,24 @@ public class ExpenseRecordDAOImpl implements ExpenseRecordDAO {
         return records;
     }
     
+     /**
+     * Returns the count of expense records matching the search criteria.
+     * Currently not implemented.
+     *
+     * @param request the search criteria
+     * @return count of matching records (always 0 for now)
+     */
+    
     @Override
     public int count(ExpenseRecordSearchRequest request) {
         return 0;
     }
+    
+    /**
+     * Adds a new expense record to the database.
+     *
+     * @param request the {@link ExpenseRecordDTO} to insert
+     */
     
     @Override
     public void addExpenseRecord(ExpenseRecordDTO request) {
@@ -81,6 +115,12 @@ public class ExpenseRecordDAOImpl implements ExpenseRecordDAO {
             e.printStackTrace();
         }
     }
+    
+    /**
+     * Retrieves all expense records from the database.
+     *
+     * @return list of all {@link ExpenseRecordDTO} objects
+     */
    
     @Override
     public List<ExpenseRecordDTO> getAllExpenseRecords() {

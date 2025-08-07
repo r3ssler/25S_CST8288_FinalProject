@@ -18,14 +18,66 @@ import java.io.IOException;
 import java.util.List;
 
 
+
+/**
+ * Servlet responsible for managing user-related operations such as login,
+ * registration, and viewing performance metrics.
+ * <p>
+ * Supported HTTP methods and paths:
+ * </p>
+ * <ul>
+ *   <li>GET /performance - Displays performance metrics for a specified user.</li>
+ *   <li>POST /login - Authenticates a user and establishes a session.</li>
+ *   <li>POST /register - Registers a new user in the system.</li>
+ * </ul>
+ * 
+ * <p>
+ * Usage:
+ * <ul>
+ *   <li>Login requires "username" and "password" parameters.</li>
+ *   <li>Register requires "username", "password", "email", "name", and "type" parameters.</li>
+ *   <li>Performance requires "username" parameter.</li>
+ * </ul>
+ * </p>
+ * 
+ * <pre>
+ * Example usage:
+ * POST /user/login
+ * POST /user/register
+ * GET /user/performance?username=johndoe
+ * </pre>
+ * 
+ * <p>This servlet uses the {@link UserService} for business logic.</p>
+ * 
+ * @author
+ * @version 1.0
+ * @since 2025-08-07
+ */
+
+
 public class UserManagementServlet extends HttpServlet {
 
     private UserService userService;
+    
+     /**
+     * Initializes the servlet and creates a new instance of {@link UserService}.
+     */
 
     @Override
     public void init(){
         userService = new UserService();
     }
+    
+     /**
+     * Handles HTTP GET requests, currently supports:
+     * <ul>
+     *   <li>/performance - show user performance metrics</li>
+     * </ul>
+     * 
+     * @param req  HTTP request
+     * @param resp HTTP response
+     * @throws IOException if an I/O error occurs
+     */
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -38,6 +90,18 @@ public class UserManagementServlet extends HttpServlet {
                 resp.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
+    
+     /**
+     * Handles HTTP POST requests, currently supports:
+     * <ul>
+     *   <li>/login - authenticate user</li>
+     *   <li>/register - register new user</li>
+     * </ul>
+     * 
+     * @param req  HTTP request
+     * @param resp HTTP response
+     * @throws IOException if an I/O error occurs
+     */
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -53,6 +117,16 @@ public class UserManagementServlet extends HttpServlet {
                 resp.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
+    
+    /**
+     * Authenticates a user based on username and password.
+     * If authentication succeeds, sets the user in session and redirects to index page.
+     * If authentication fails, forwards to an error JSP page.
+     *
+     * @param req  HTTP request
+     * @param resp HTTP response
+     * @throws IOException if an I/O error occurs
+     */
 
     private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         LoginRequest loginRequest = new LoginRequest();
@@ -76,6 +150,13 @@ public class UserManagementServlet extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
+    /**
+     * Registers a new user using data from the request parameters.
+     * After registration, redirects to the login page.
+     *
+     * @param req  HTTP request
+     * @param resp HTTP response
+     */
 
     private void register(HttpServletRequest req, HttpServletResponse resp) {
         RegisterRequest registerRequest = new RegisterRequest();
@@ -95,6 +176,14 @@ public class UserManagementServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+    
+    /**
+     * Retrieves performance metrics for a specified user and forwards to the performance JSP.
+     *
+     * @param req  HTTP request
+     * @param resp HTTP response
+     * @throws IOException if an I/O error occurs
+     */
     
     private void performance(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String userName = req.getParameter("username");

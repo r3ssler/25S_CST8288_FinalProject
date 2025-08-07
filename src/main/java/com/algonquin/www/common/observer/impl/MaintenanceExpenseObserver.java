@@ -11,15 +11,61 @@ import com.algonquin.www.model.ExpenseReportRequest;
 
 import java.util.List;
 
+
+/**
+ * Concrete implementation of the {@link Observer} interface that handles maintenance-related
+ * expense reports. This observer performs two main actions:
+ * <ul>
+ *     <li>Updates the used hours of all components associated with the vehicle undergoing maintenance.</li>
+ *     <li>Persists a maintenance expense record to the database.</li>
+ * </ul>
+ *
+ * <p>
+ * The observer is only triggered for reports with the type {@code "maintenance"} (as defined in
+ * {@link UsageEventTypes#MAINTENANCE}). Other report types are ignored.
+ * </p>
+ *
+ * <pre>
+ * Example usage:
+ * ExpenseReportSubject subject = new ExpenseReportSubject();
+ * subject.attach(new MaintenanceExpenseObserver(expenseRecordDAO, componentDAO));
+ * </pre>
+ *
+ * @see Observer
+ * @see ExpenseReportRequest
+ * @see ExpenseRecordDAO
+ * @see ComponentDAO
+ */
+
 public class MaintenanceExpenseObserver implements Observer {
 
     private ExpenseRecordDAO expenseRecordDAO;
     private ComponentDAO componentDAO;
     
+    /**
+     * Constructs a {@code MaintenanceExpenseObserver} with the specified DAOs for
+     * recording expenses and updating component data.
+     *
+     * @param expenseRecordDAO DAO used to store maintenance expense records
+     * @param componentDAO     DAO used to fetch and update vehicle components
+     */
+    
     public MaintenanceExpenseObserver(ExpenseRecordDAO expenseRecordDAO, ComponentDAO componentDAO) {
         this.expenseRecordDAO = expenseRecordDAO;
         this.componentDAO = componentDAO;
     }
+    
+     /**
+     * Handles an {@link ExpenseReportRequest} related to vehicle maintenance. If the request type
+     * is not "maintenance", the method exits early. Otherwise, it:
+     * <ol>
+     *     <li>Retrieves components for the vehicle and updates their used hours based on mileage difference.</li>
+     *     <li>Saves an {@link ExpenseRecordDTO} for the maintenance event.</li>
+     * </ol>
+     *
+     * @param request the maintenance expense report to process
+     * @return {@code true} if processing completes successfully, even if no components exist
+     */
     
     @Override
     public boolean report(ExpenseReportRequest request) {

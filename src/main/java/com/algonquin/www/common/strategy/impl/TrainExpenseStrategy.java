@@ -6,7 +6,33 @@ import com.algonquin.www.domain.ExpenseRecordDTO;
 
 import java.util.List;
 
+/**
+ * Strategy implementation for calculating total train-related expenses.
+ * <p>
+ * This class implements the {@link ExpenseCalculationStrategy} interface and filters a list
+ * of {@link ExpenseRecordDTO} instances to include only those where the type matches
+ * {@code UsageEventTypes.TRAIN}. It then calculates the sum of their expense values.
+ * </p>
+ *
+ * <pre>
+ * Example usage:
+ * ExpenseCalculationStrategy strategy = new TrainExpenseStrategy();
+ * double trainExpense = strategy.calculate(expenseRecords);
+ * </pre>
+ *
+ * @see ExpenseCalculationStrategy
+ * @see ExpenseRecordDTO
+ * @see UsageEventTypes
+ */
+
 public class TrainExpenseStrategy implements ExpenseCalculationStrategy {
+    
+     /**
+     * Calculates the total expense for train usage from the provided list of records.
+     *
+     * @param records the list of expense records to be processed
+     * @return the total expense related to train usage
+     */
     
     @Override
     public double calculate(List<ExpenseRecordDTO> records) {

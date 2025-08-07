@@ -12,8 +12,29 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+/**
+ * Implementation of the {@link ComponentDAO} interface for managing components
+ * associated with vehicles in the database.
+ * <p>
+ * This class provides CRUD operations on the Component table, such as batch insertion,
+ * searching by vehicle number, retrieving all components, and updating component details.
+ * </p>
+ *
+ * <p>Uses {@link DataSource} to obtain database connections.</p>
+ *
+ * @author
+ * @version 1.0
+ * @since 2025-08-07
+ */
 
 public class ComponentDAOImpl extends AbstractGenericDAO implements ComponentDAO {
+    
+    /**
+     * Adds a list of components to the database in batch.
+     * 
+     * @param components the list of {@link ComponentDTO} to add
+     * @return true if all components are successfully added, false otherwise
+     */
     
     @Override
     public boolean addComponents(List<ComponentDTO> components) {
@@ -41,6 +62,14 @@ public class ComponentDAOImpl extends AbstractGenericDAO implements ComponentDAO
             return false;
         }
     }
+    
+    /**
+     * Finds components by vehicle number.
+     * If vehicle number is null or empty, returns all components.
+     * 
+     * @param vehicleNumber the vehicle number to filter by
+     * @return a list of matching {@link ComponentDTO} objects
+     */
 
     @Override
     public List<ComponentDTO> findByVehicle(String vehicleNumber) {
@@ -51,6 +80,12 @@ public class ComponentDAOImpl extends AbstractGenericDAO implements ComponentDAO
             return searchAllComponents();
         }
     }
+    
+    /**
+     * Retrieves all components from the database.
+     * 
+     * @return list of all {@link ComponentDTO} objects
+     */
 
     public List<ComponentDTO> searchAllComponents() {
         List<ComponentDTO> components = new ArrayList<>();
@@ -70,6 +105,13 @@ public class ComponentDAOImpl extends AbstractGenericDAO implements ComponentDAO
 
         return components;
     }
+    
+    /**
+     * Searches components by a specific vehicle number.
+     * 
+     * @param vehicleNumber the vehicle number to search for
+     * @return list of matching {@link ComponentDTO} objects
+     */
     
     private List<ComponentDTO> searchByVehicleNumber(String vehicleNumber) {
         List<ComponentDTO> components = new ArrayList<>();
@@ -92,7 +134,13 @@ public class ComponentDAOImpl extends AbstractGenericDAO implements ComponentDAO
 
         return components;
     }
-    
+    /**
+     * Maps a JDBC {@link ResultSet} row to a {@link ComponentDTO}.
+     * 
+     * @param rs the {@link ResultSet} positioned at a row
+     * @return the mapped {@link ComponentDTO}
+     * @throws SQLException if a database access error occurs
+     */
     private ComponentDTO mapToComponentDTO(ResultSet rs) throws SQLException {
         ComponentDTO dto = new ComponentDTO();
         dto.setId(rs.getLong("id"));
@@ -101,6 +149,14 @@ public class ComponentDAOImpl extends AbstractGenericDAO implements ComponentDAO
         dto.setUsedHours(rs.getDouble("usedHours"));
         return dto;
     }
+    
+    
+    /**
+     * Updates an existing component's details in the database.
+     * 
+     * @param componentDTO the {@link ComponentDTO} with updated information
+     * @return true if the update was successful, false otherwise
+     */
 
     @Override
     public boolean updateComponent(ComponentDTO componentDTO) {

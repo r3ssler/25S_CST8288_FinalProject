@@ -18,6 +18,13 @@ import com.algonquin.www.model.ExpenseRecordSearchRequest;
 import com.algonquin.www.model.ExpenseReportRequest;
 
 import java.util.List;
+/**
+ * Service class for managing usage and expense related operations.
+ * <p>
+ * Provides functionality to calculate efficiency metrics, search expense records,
+ * and report new expense records using Observer and Strategy design patterns.
+ * </p>
+ */
 
 public class UsageService {
 
@@ -26,6 +33,12 @@ public class UsageService {
     private ComponentDAO componentDAO;
 
     private ExpenseReportSubject subject;
+     /**
+     * Constructs a new UsageService instance.
+     * <p>
+     * Initializes DAOs and sets up observers for expense reporting.
+     * </p>
+     */
 
     public UsageService() {
         expenseRecordDAO = new ExpenseRecordDAOImpl();
@@ -37,6 +50,16 @@ public class UsageService {
         subject.attach(fuelExpenseObserver);
         subject.attach(maintenanceExpenseObserver);
     }
+    
+      /**
+     * Calculates efficiency metrics for different vehicle types and maintenance.
+     * <p>
+     * Uses the Strategy pattern to calculate expenses for buses, light rails, trains,
+     * and maintenance costs, aggregating the results into an {@link EfficiencyMetricsResponse}.
+     * </p>
+     *
+     * @return an {@link EfficiencyMetricsResponse} containing calculated metrics
+     */
 
     public EfficiencyMetricsResponse efficiencyMetrics() {
         ExpenseCalculator calculator = new ExpenseCalculator();
@@ -58,10 +81,28 @@ public class UsageService {
         response.setMaintenance(calculator.calculate(records));
         return response;
     }
+    
+     /**
+     * Searches expense records based on criteria in the request.
+     *
+     * @param request the {@link ExpenseRecordSearchRequest} containing search parameters
+     * @return a list of matching {@link ExpenseRecordDTO} objects
+     */
 
     public List<ExpenseRecordDTO> expenseRecordSearch(ExpenseRecordSearchRequest request) {
         return expenseRecordDAO.expenseRecordSearch(request);
     }
+    
+     /**
+     * Reports a new expense record by notifying registered observers.
+     * <p>
+     * The method triggers the Observer pattern notification by setting the
+     * {@link ExpenseReportRequest} on the subject.
+     * </p>
+     *
+     * @param request the {@link ExpenseReportRequest} containing expense details
+     * @return always returns true to indicate the report was accepted
+     */
 
     public boolean report(ExpenseReportRequest request) {
         subject.setRequest(request);

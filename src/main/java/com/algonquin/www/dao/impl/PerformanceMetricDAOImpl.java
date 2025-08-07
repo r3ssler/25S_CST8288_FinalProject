@@ -13,7 +13,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of {@link PerformanceMetricDAO} to perform CRUD
+ * operations on PerformanceMetric entities using JDBC.
+ * <p>
+ * Utilizes {@link DataSource} for database connections.
+ * </p>
+ * 
+ * @author
+ * @version 1.0
+ * @since 2025-08-07
+ */
+
 public class PerformanceMetricDAOImpl extends AbstractGenericDAO implements PerformanceMetricDAO {
+    /**
+     * Retrieves all performance metrics from the database.
+     *
+     * @return a list of all {@link PerformanceMetricDTO} objects
+     */
 
     @Override
     public List<PerformanceMetricDTO> selectAll() {
@@ -43,6 +60,13 @@ public class PerformanceMetricDAOImpl extends AbstractGenericDAO implements Perf
         return metrics;
     }
     
+    /**
+     * Retrieves a performance metric by user name.
+     *
+     * @param userName the username to search for
+     * @return the matching {@link PerformanceMetricDTO} or null if none found
+     */
+    
     @Override
     public PerformanceMetricDTO selectByUserName(String userName) {
         String sql = "SELECT id, userId, userName, totalTrip, totalOnTimeTrip, totalTime FROM PerformanceMetric WHERE userName = ?";
@@ -70,6 +94,13 @@ public class PerformanceMetricDAOImpl extends AbstractGenericDAO implements Perf
 
         return metric;
     }
+    
+     /**
+     * Retrieves a performance metric by user ID.
+     *
+     * @param userId the user ID to search for
+     * @return the matching {@link PerformanceMetricDTO} or null if none found
+     */
     
     @Override
     public PerformanceMetricDTO getByUserId(Long userId) {
@@ -100,6 +131,13 @@ public class PerformanceMetricDAOImpl extends AbstractGenericDAO implements Perf
         return null;
     }
     
+     /**
+     * Updates an existing performance metric record.
+     *
+     * @param dto the performance metric DTO with updated data
+     * @return true if the update affected one or more rows; false otherwise
+     */
+    
     @Override
     public boolean update(PerformanceMetricDTO dto) {
         String sql = "UPDATE PerformanceMetric SET totalTrip = ?, totalOnTimeTrip = ?, totalTime = ? WHERE userId = ?";
@@ -120,6 +158,13 @@ public class PerformanceMetricDAOImpl extends AbstractGenericDAO implements Perf
             return false;
         }
     }
+    
+    /**
+     * Inserts a new performance metric record.
+     *
+     * @param dto the performance metric DTO to insert
+     * @return true if the insert was successful; false otherwise
+     */
     
     @Override
     public boolean add(PerformanceMetricDTO dto) {
