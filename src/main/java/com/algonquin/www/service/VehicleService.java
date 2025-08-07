@@ -13,7 +13,7 @@ import com.algonquin.www.model.RegisterVehicleRequest;
 import java.util.List;
 /**
  * Service class to handle business logic related to vehicles and their components.
- * Acts as a bridge between the DAO layer and the presentation/controller layer.
+ * Acts as a bridge between the DAO layer and the presentation/controller .
  */
 
 
