@@ -92,7 +92,7 @@ This system is developed using **Java 21**, **Java Servlets**, **MySQL 8.0.40**,
 
 ## 📣 Authors
 
-- Sreelakshmi Manoj – Student ID: 041141760 @
+- Sreelakshmi Manoj – Student ID: 041141760 @Sree-Lakshmi-05
 - Deepanshu – Student ID: 041155408 @Deep0022
 - Ramandeep Kaur – Student ID: 041151322 @Ramandeep59
 - Viet-Quynh Nguyen – Student ID: 041088250 @r3ssler
